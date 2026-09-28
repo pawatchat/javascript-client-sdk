@@ -1,5 +1,6 @@
+import { ReactiveMap } from "@solid-primitives/map";
 import { ReactiveSet } from "@solid-primitives/set";
-import type { Channel as APIChannel } from "stoat-api";
+import type { Channel as APIChannel } from "pawat-api";
 
 import type { Client } from "../Client.js";
 import { File } from "../classes/File.js";
@@ -16,7 +17,7 @@ export type HydratedChannel = {
   icon?: File;
 
   active: boolean;
-  typingIds: ReactiveSet<string>;
+  typingIndicators: ReactiveMap<string, string | undefined>;
   recipientIds: ReactiveSet<string>;
 
   userId?: string;
@@ -54,7 +55,7 @@ export const channelHydration: Hydrate<Merge<APIChannel>, HydratedChannel> = {
     description: (channel) => channel.description!,
     icon: (channel, ctx) => new File(ctx as Client, channel.icon!),
     active: (channel) => channel.active || false,
-    typingIds: () => new ReactiveSet(),
+    typingIndicators: () => new ReactiveMap(),
     recipientIds: (channel) => new ReactiveSet(channel.recipients),
     userId: (channel) => channel.user,
     ownerId: (channel) => channel.owner,
@@ -87,7 +88,7 @@ export const channelHydration: Hydrate<Merge<APIChannel>, HydratedChannel> = {
         : undefined,
   },
   initialHydration: () => ({
-    typingIds: new ReactiveSet(),
+    typingIndicators: new ReactiveMap(),
     recipientIds: new ReactiveSet(),
   }),
 };

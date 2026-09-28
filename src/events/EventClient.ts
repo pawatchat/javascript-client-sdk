@@ -3,7 +3,7 @@ import { createSignal } from "solid-js";
 
 import { AsyncEventEmitter } from "@vladfrangu/async_event_emitter";
 import { JSONParse, JSONStringify } from "json-with-bigint";
-import type { Error } from "stoat-api";
+import type { Error } from "pawat-api";
 
 import type { ProtocolV1 } from "./v1.js";
 

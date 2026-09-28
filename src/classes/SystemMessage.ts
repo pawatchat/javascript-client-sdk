@@ -1,7 +1,7 @@
 import type {
   Message as APIMessage,
   SystemMessage as APISystemMessage,
-} from "stoat-api";
+} from "pawat-api";
 import { decodeTime } from "ulid";
 
 import type { Client } from "../Client.js";

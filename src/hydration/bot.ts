@@ -1,4 +1,4 @@
-import type { Bot as APIBot } from "stoat-api";
+import type { Bot as APIBot } from "pawat-api";
 
 import type { Hydrate } from "./index.js";
 

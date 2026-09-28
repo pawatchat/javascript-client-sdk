@@ -1,4 +1,4 @@
-import type { Role as APIRole } from "stoat-api";
+import type { Role as APIRole } from "pawat-api";
 
 import type { Client } from "../Client.js";
 

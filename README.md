@@ -1,8 +1,8 @@
-# stoat.js
+# pawat.js
 
-![stoat.js](https://img.shields.io/npm/v/stoat.js) ![stoat-api](https://img.shields.io/npm/v/stoat-api?label=Stoat%20API)
+![pawat.js](https://img.shields.io/npm/v/pawat.js) ![pawat-api](https://img.shields.io/npm/v/pawat-api?label=Pawat%20API)
 
-**stoat.js** is a JavaScript library for interacting with the Stoat API
+**pawat.js** is a JavaScript library for interacting with the Pawat API
 
 ## Requirements
 
@@ -14,7 +14,7 @@ To use this module, you must be using at least:
 ## Example Usage
 
 ```javascript
-import { Client } from "stoat.js";
+import { Client } from "pawat.js";
 
 let client = new Client();
 
@@ -46,15 +46,15 @@ function MyApp() {
 }
 ```
 
-## Stoat API Types
+## Pawat API Types
 
 > [!WARNING]
 > It is advised you do not use this unless necessary. If you find somewhere that isn't covered by the library, please open an issue as this library aims to transform all objects.
 
-All `stoat-api` types are re-exported from this library under `API`.
+All `pawat-api` types are re-exported from this library under `API`.
 
 ```typescript
-import { API } from "stoat.js";
+import { API } from "pawat.js";
 
 // API.Channel;
 // API.[..];

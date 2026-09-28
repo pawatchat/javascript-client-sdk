@@ -1,4 +1,4 @@
-import type { SessionInfo as APISession } from "stoat-api";
+import type { SessionInfo as APISession } from "pawat-api";
 
 import type { Hydrate } from "./index.js";
 

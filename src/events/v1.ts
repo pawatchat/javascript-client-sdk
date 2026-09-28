@@ -18,7 +18,7 @@ import type {
   Role,
   Server,
   User,
-} from "stoat-api";
+} from "pawat-api";
 
 import type { Client } from "../Client.js";
 import { MessageEmbed } from "../classes/MessageEmbed.js";
@@ -46,6 +46,7 @@ type ClientMessage =
   | {
       type: "BeginTyping";
       channel: string;
+      indicator?: string;
     }
   | {
       type: "EndTyping";
@@ -115,7 +116,7 @@ type ServerMessage =
   | { type: "ChannelDelete"; id: string }
   | { type: "ChannelGroupJoin"; id: string; user: string }
   | { type: "ChannelGroupLeave"; id: string; user: string }
-  | { type: "ChannelStartTyping"; id: string; user: string }
+  | { type: "ChannelStartTyping"; id: string; user: string; indicator?: string }
   | { type: "ChannelStopTyping"; id: string; user: string }
   | { type: "ChannelAck"; id: string; user: string; message_id: string }
   | {
@@ -614,34 +615,36 @@ export async function handleEvent(
     case "ChannelStartTyping": {
       const channel = client.channels.getOrPartial(event.id);
       if (channel) {
-        if (!channel.typingIds.has(event.user)) {
-          channel.typingIds.add(event.user);
+        const hasUser = channel.typingIndicators.has(event.user);
+        const prevIndicator = channel.typingIndicators.get(event.user);
 
-          clearTimeout(channel._typingTimers[event.user]);
-          channel._typingTimers[event.user] = setTimeout(
-            () =>
-              handleEvent(
-                client,
-                { ...event, type: "ChannelStopTyping" },
-                setReady,
-              ),
-            4000,
-          ) as never;
-
+        if (!hasUser || prevIndicator !== event.indicator) {
+          channel.typingIndicators.set(event.user, event.indicator);
           client.emit(
             "channelStartTyping",
             channel,
             client.users.getOrPartial(event.user)!,
           );
         }
+
+        clearTimeout(channel._typingTimers[event.user]);
+        channel._typingTimers[event.user] = setTimeout(
+          () =>
+            handleEvent(
+              client,
+              { ...event, type: "ChannelStopTyping" },
+              setReady,
+            ),
+          4000,
+        ) as never;
       }
       break;
     }
     case "ChannelStopTyping": {
       const channel = client.channels.getOrPartial(event.id);
       if (channel) {
-        if (channel.typingIds.has(event.user)) {
-          channel.typingIds.delete(event.user);
+        if (channel.typingIndicators.has(event.user)) {
+          channel.typingIndicators.delete(event.user);
 
           clearTimeout(channel._typingTimers[event.user]);
           delete channel._typingTimers[event.user];

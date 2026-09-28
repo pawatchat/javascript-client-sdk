@@ -4,7 +4,7 @@ import type {
   Server as APIServer,
   Category,
   SystemMessageChannels,
-} from "stoat-api";
+} from "pawat-api";
 
 import type { Client } from "../Client.js";
 import { File } from "../classes/File.js";

@@ -1,7 +1,7 @@
 {
   pkgs ? import <nixpkgs> { },
 }: pkgs.mkShell {
-  name = "stoatEnv";
+  name = "pawatEnv";
 
   buildInputs = with pkgs; [
     # Tools

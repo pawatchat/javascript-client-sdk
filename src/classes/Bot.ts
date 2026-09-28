@@ -1,4 +1,4 @@
-import type { DataEditBot, DiscoverRequest } from "stoat-api";
+import type { DataEditBot, DiscoverRequest } from "pawat-api";
 import { decodeTime } from "ulid";
 
 import type { BotCollection } from "../collections/BotCollection.js";

@@ -2,8 +2,8 @@ import type { Accessor, Setter } from "solid-js";
 import { batch, createSignal } from "solid-js";
 
 import { AsyncEventEmitter } from "@vladfrangu/async_event_emitter";
-import { API } from "stoat-api";
-import type { DataLogin, Error, RevoltConfig, Role } from "stoat-api";
+import { API } from "pawat-api";
+import type { DataLogin, Error, RevoltConfig, Role } from "pawat-api";
 
 import type { Channel } from "./classes/Channel.js";
 import type { Emoji } from "./classes/Emoji.js";
@@ -169,7 +169,7 @@ export type ClientOptions = Partial<EventClientOptions> & {
 };
 
 /**
- * Stoat.js Clients
+ * Pawat.js Clients
  */
 export class Client extends AsyncEventEmitter<Events> {
   readonly account;
@@ -204,14 +204,14 @@ export class Client extends AsyncEventEmitter<Events> {
   #reconnectTimeout: number | undefined;
 
   /**
-   * Create Stoat.js Client
+   * Create Pawat.js Client
    * @param configuration Deprecated - Please use `Client.initConfig` if you need to override config.
    */
   constructor(options?: Partial<ClientOptions>, configuration?: RevoltConfig) {
     super();
 
     this.options = {
-      baseURL: "https://stoat.chat/api",
+      baseURL: "https://pawat.chat/api",
       partials: false,
       eagerFetching: true,
       syncUnreads: false,
@@ -335,7 +335,7 @@ export class Client extends AsyncEventEmitter<Events> {
     this.events.disconnect();
     this.#setReady(false);
     this.events.connect(
-      this.configuration?.ws ?? "wss://stoat.chat/events",
+      this.configuration?.ws ?? "wss://pawat.chat/events",
       typeof this.#session === "string" ? this.#session : this.#session!.token,
     );
   }

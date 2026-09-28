@@ -17,7 +17,7 @@ import type {
   DiscoverRequest,
   Override,
   Role,
-} from "stoat-api";
+} from "pawat-api";
 import { decodeTime } from "ulid";
 
 import type { ServerCollection } from "../collections/ServerCollection.js";

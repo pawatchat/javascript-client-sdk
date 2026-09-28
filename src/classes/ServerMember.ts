@@ -2,7 +2,7 @@ import type {
   DataBanCreate,
   DataMemberEdit,
   MemberCompositeKey,
-} from "stoat-api";
+} from "pawat-api";
 
 import type { ServerMemberCollection } from "../collections/ServerMemberCollection.js";
 import {

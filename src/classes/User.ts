@@ -3,7 +3,7 @@ import type {
   UserLimits as APIUserLimits,
   DataEditUser,
   Presence,
-} from "stoat-api";
+} from "pawat-api";
 import { decodeTime } from "ulid";
 
 import type { UserCollection } from "../collections/UserCollection.js";

@@ -1,4 +1,4 @@
-import type { DataCreateAccount, WebPushSubscription } from "stoat-api";
+import type { DataCreateAccount, WebPushSubscription } from "pawat-api";
 
 import type { Client } from "../Client.js";
 import { MFA, MFATicket } from "../classes/MFA.js";

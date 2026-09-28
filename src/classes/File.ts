@@ -1,4 +1,4 @@
-import type { File as APIFile, Metadata } from "stoat-api";
+import type { File as APIFile, Metadata } from "pawat-api";
 
 import type { Client } from "../Client.js";
 

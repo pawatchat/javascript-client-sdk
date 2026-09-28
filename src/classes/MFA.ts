@@ -6,7 +6,7 @@ import type {
   MFAResponse,
   MultiFactorStatus,
   MFATicket as TicketType,
-} from "stoat-api";
+} from "pawat-api";
 
 import type { Client } from "../Client.js";
 

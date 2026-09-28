@@ -12,8 +12,8 @@ import type {
   DataMessageSend,
   Invite,
   Override,
-} from "stoat-api";
-import type { APIRoutes } from "stoat-api";
+} from "pawat-api";
+import type { APIRoutes } from "pawat-api";
 import { decodeTime, ulid } from "ulid";
 
 import { ChannelCollection } from "../collections/index.js";
@@ -149,18 +149,22 @@ export class Channel {
   }
 
   /**
-   * User ids of people currently typing in channel
+   * User ids and indicators of people currently typing in channel
    */
-  get typingIds(): ReactiveSet<string> {
-    return this.#collection.getUnderlyingObject(this.id).typingIds;
+  get typingIndicators(): ReactiveMap<string, string | undefined> {
+    return this.#collection.getUnderlyingObject(this.id).typingIndicators;
   }
 
   /**
-   * Users currently trying in channel
+   * Users currently typing in channel
    */
-  get typing(): User[] {
-    return [...this.typingIds.values()].map(
-      (id) => this.#collection.client.users.get(id)!,
+  get typing(): { id: string; user?: User; indicator?: string }[] {
+    return [...this.typingIndicators.entries()].map(
+      ([id, indicator]) => ({
+        id,
+        user: this.#collection.client.users.get(id),
+        indicator,
+      }),
     );
   }
 

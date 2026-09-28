@@ -1,4 +1,4 @@
-import type { DataEditEmoji, EmojiParent } from "stoat-api";
+import type { DataEditEmoji, EmojiParent } from "pawat-api";
 import { decodeTime } from "ulid";
 
 import type { EmojiCollection } from "../collections/EmojiCollection.js";
